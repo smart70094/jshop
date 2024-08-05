@@ -1,0 +1,56 @@
+project:
+  permitUrl: /error,/api/actuator/**,/api/web/user/login,/api/web/user/test
+  jwt:
+    expiration: 18000 #(5h)
+    secret: MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyN2I0ZjY=
+  volumn-path: c:\jshop
+
+
+spring:
+  application:
+    name: jshop
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=jshop
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: jshop
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
+
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core: DEBUG
+
